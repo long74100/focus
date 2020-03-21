@@ -1,17 +1,5 @@
 /**
- * Extracts the base url given a url
- * @param {String} url input url
- * @return {String} base url
- */
-const extractBaseUrl = (url) => {
-    const pathArray = url.split( '/' );
-    const protocol = pathArray[0];
-    const host = pathArray[2];
-    return protocol + '//' + host;
-}
-
-/**
- * Sets up popup actions
+ * Sets up popup 
  */
 const setUpPopup = () => {
     const actionIcon = document.querySelector('.action-icon');
@@ -24,7 +12,7 @@ const setUpPopup = () => {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             const currTab = tabs[0];
             if (currTab) { 
-                baseUrl = extractBaseUrl(currTab.url);
+                baseUrl = Utils.extractBaseUrl(currTab.url);
                 actionIcon.setAttribute('src', paused[baseUrl] ? 'images/unpause.png' : 'images/pause.png');
             }
         });

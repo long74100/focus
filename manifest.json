@@ -1,5 +1,5 @@
 {
-    "name": "Hello Extensions",
+    "name": "Focus",
     "version": "1.0",
     "description" : "Base Level Extension",
     "permissions": ["activeTab", "declarativeContent", "storage"],
@@ -7,6 +7,19 @@
       "scripts": ["js/background.js"],
       "persistent": false
     },
+    "content_scripts": [
+      {
+        "matches": [ 
+          "<all_urls>"
+        ],
+        "js": [
+          "js/utils.js",
+          "js/content.js"
+        ],
+        "css": ["css/content.css"],
+        "run_at": "document_end"   
+      }
+    ],
     "manifest_version": 2,
     "browser_action": {
       "default_popup": "popup.html",
