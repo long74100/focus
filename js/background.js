@@ -5,9 +5,9 @@
 'use strict';
 
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.sync.set({'paused': {}}, function() {
-      console.log('set paused');
-  });
+    chrome.storage.sync.set({'paused': {}}, function() {
+        console.log('set paused');
+    });
 });
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
