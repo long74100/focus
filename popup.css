@@ -1,0 +1,32 @@
+.popup {
+    width: 200px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.action-icon {
+    width: 50%;
+    height: 50%;
+    margin: 0 auto;
+}
+
+.action-icon:hover {
+    transform: scale(1.05);
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+}
+
+li {
+    list-style: none;
+}
+
+
+
+.manageOptions {
+    text-align: center;
+}
