@@ -4,7 +4,7 @@
     "description" : "Base Level Extension",
     "permissions": ["activeTab", "declarativeContent", "storage"],
     "background": {
-      "scripts": ["background.js"],
+      "scripts": ["js/background.js"],
       "persistent": false
     },
     "manifest_version": 2,
