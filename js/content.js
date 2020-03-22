@@ -5,6 +5,8 @@ const hidePage = () => {
         const baseUrl = Utils.extractBaseUrl(location.href);
         
         if (paused[baseUrl]) {
+            Utils.pauseAllMedia();
+            
             const body = document.querySelector('body');
             const overlay = document.createElement('div');
             const countDown = document.createElement('h1');

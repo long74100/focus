@@ -18,8 +18,14 @@ const Utils = (() => {
      */
     const secondsToHHMMSS = (seconds) => new Date(1000 * seconds).toISOString().substr(11, 8);
 
+    const pauseAllMedia = () => {
+        document.querySelectorAll('video').forEach(vid => vid.pause());
+    }
+
     return {
         extractBaseUrl,
-        secondsToHHMMSS
+        secondsToHHMMSS,
+        pauseAllMedia
     }
+    
 })();
