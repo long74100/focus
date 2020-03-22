@@ -5,6 +5,24 @@
 'use strict';
 
 chrome.runtime.onInstalled.addListener(function() {
-    chrome.storage.sync.set({'paused': {}}, function() {
+    chrome.storage.sync.set({'paused': {}}, () => {
+        console.log("Successfully installed");
     });
 });
+
+const timer = setInterval(() => { 
+    chrome.storage.sync.get('paused', (data) => {
+        let paused = data.paused;
+
+        for (const key in paused) {
+            const duration = paused[key].duration;
+            if (duration <= 1) {
+                delete paused[key];
+            } else {
+                paused[key].duration = duration - 1;
+            }
+        }
+
+        chrome.storage.sync.set({'paused': paused});
+    });
+}, 1000)

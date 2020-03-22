@@ -36,7 +36,7 @@ const setUpPopup = () => {
     };
 
     changeOptions.onclick = (element) => {
-        chrome.runtime.openOptionsPage(() => console.log("opened options"))
+        chrome.runtime.openOptionsPage();
     }
 }
 

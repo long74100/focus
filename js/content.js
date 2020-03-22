@@ -1,13 +1,15 @@
 
 const hidePage = () => {
     chrome.storage.sync.get('paused', (data) => {
-        paused = data.paused;
-        baseUrl = Utils.extractBaseUrl(location.href);
+        const paused = data.paused;
+        const baseUrl = Utils.extractBaseUrl(location.href);
+        
         if (paused[baseUrl]) {
             const body = document.querySelector('body');
             const overlay = document.createElement('div');
             const countDown = document.createElement('h1');
-            let duration = paused[baseUrl].duration * 60;
+            const originalOverflowStyle = body.style.overflow;
+            const duration = paused[baseUrl].duration;
             
             body.style.overflow = 'hidden';
             overlay.className = 'focus-overlay';    
@@ -17,12 +19,18 @@ const hidePage = () => {
             body.appendChild(overlay);
 
             const timer = setInterval(() => { 
-                if (duration == 0) {
-                    clearInterval(timer);
-                } else {
-                    duration--;
-                    countDown.textContent = Utils.secondsToHHMMSS(duration);
-                }
+                chrome.storage.sync.get('paused', (data) => {
+                    const newPaused = data.paused;
+                    
+                    if (newPaused[baseUrl]) {
+                        const newDuration = newPaused[baseUrl].duration;
+                        countDown.textContent = Utils.secondsToHHMMSS(newDuration);
+                    } else {
+                        clearInterval(timer);
+                        body.style.overflow = originalOverflowStyle;
+                        overlay.style.display = 'none';
+                    }
+                });
             }, 1000)
         }
     });
