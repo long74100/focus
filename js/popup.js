@@ -1,5 +1,5 @@
 /**
- * Sets up popup 
+ * Sets up the popup screen 
  */
 const setUpPopup = () => {
     const actionIcon = document.querySelector('.action-icon');
@@ -28,7 +28,7 @@ const setUpPopup = () => {
                 pausedData[baseUrl] = { duration: duration * 60 };
             }
               
-            chrome.tabs.update(currTab.id, {url: currTab.url});
+            chrome.tabs.update(currTab.id, { url: baseUrl });
 
             chrome.storage.local.set({ paused: pausedData }, ()  => {
                 actionIcon.setAttribute('src', pausedData[baseUrl] ? 'images/unpause.png' : 'images/pause.png')

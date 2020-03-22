@@ -10,19 +10,20 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 
+// background clock for updating durations
 const timer = setInterval(() => { 
     chrome.storage.local.get('paused', (data) => {
-        let paused = data.paused;
+        let pausedData = data.paused;
 
-        for (const key in paused) {
-            const duration = paused[key].duration;
+        for (const key in pausedData) {
+            const duration = pausedData[key].duration;
             if (duration <= 1) {
-                delete paused[key];
+                delete pausedData[key];
             } else {
-                paused[key].duration = duration - 1;
+                pausedData[key].duration = duration - 1;
             }
         }
 
-        chrome.storage.local.set({'paused': paused});
+        chrome.storage.local.set({'paused': pausedData});
     });
 }, 1000)
