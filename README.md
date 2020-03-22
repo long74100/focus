@@ -1,8 +1,8 @@
-# focus
-Chrome extension to help with productivity
+### focus
 
 Lock websites for custom durations so that you can focus on being productive.
 
+### Installing
 Download or clone the repository then go to chrome extensions -> load unpacked -> select this repository. 
 
 ![screenshot](https://user-images.githubusercontent.com/17792243/77240543-81451280-6bbd-11ea-9e83-47927ee7ac8b.PNG)
