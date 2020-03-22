@@ -28,7 +28,7 @@ const setUpPopup = () => {
                 pausedData[baseUrl] = { duration: duration * 60 };
             }
               
-            chrome.tabs.update(currTab.id, { url: baseUrl });
+            chrome.tabs.update(currTab.id, { url: currTab.url });
 
             chrome.storage.local.set({ paused: pausedData }, ()  => {
                 actionIcon.setAttribute('src', pausedData[baseUrl] ? 'images/unpause.png' : 'images/pause.png')
