@@ -24,7 +24,7 @@ const setUpPopup = () => {
             if (paused[baseUrl]) {
                 delete paused[baseUrl];
             } else {
-                paused[baseUrl] = { duration: 30 * 60 };
+                paused[baseUrl] = { duration: (30 * 60) };
             }
 
             chrome.tabs.update(currTab.id, {url: currTab.url});

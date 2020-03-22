@@ -8,9 +8,11 @@ const hidePage = () => {
             const body = document.querySelector('body');
             const overlay = document.createElement('div');
             const countDown = document.createElement('h1');
+            const originalBodyHeight = body.style.height;
             const originalOverflowStyle = body.style.overflow;
             const duration = paused[baseUrl].duration;
             
+            body.style.height = '100vh';
             body.style.overflow = 'hidden';
             overlay.className = 'focus-overlay';    
             countDown.className = 'count-down';
@@ -27,6 +29,7 @@ const hidePage = () => {
                         countDown.textContent = Utils.secondsToHHMMSS(newDuration);
                     } else {
                         clearInterval(timer);
+                        body.style.height = originalBodyHeight;
                         body.style.overflow = originalOverflowStyle;
                         overlay.style.display = 'none';
                     }
