@@ -1,10 +1,18 @@
 
 const hidePage = () => {
     chrome.storage.local.get('paused', (data) => {
-        const paused = data.paused;
+        const pausedData = data.paused;
         const baseUrl = Utils.extractBaseUrl(location.href);
         
-        if (paused[baseUrl]) {
+        if (pausedData[baseUrl]) {
+
+            // scroll to top 
+            window.onload=() => {
+                setTimeout(function(){
+                    scrollTo(0,-1);
+                },0);
+            }
+            
             Utils.pauseAllMedia();
             
             const body = document.querySelector('body');
@@ -12,7 +20,7 @@ const hidePage = () => {
             const countDown = document.createElement('h1');
             const originalBodyHeight = body.style.height;
             const originalOverflowStyle = body.style.overflow;
-            const duration = paused[baseUrl].duration;
+            const duration = pausedData[baseUrl].duration;
             
             body.style.height = '100vh';
             body.style.overflow = 'hidden';
@@ -24,10 +32,10 @@ const hidePage = () => {
 
             const timer = setInterval(() => { 
                 chrome.storage.local.get('paused', (data) => {
-                    const newPaused = data.paused;
+                    const newPausedData = data.paused;
                     
-                    if (newPaused[baseUrl]) {
-                        const newDuration = newPaused[baseUrl].duration;
+                    if (newPausedData[baseUrl]) {
+                        const newDuration = newPausedData[baseUrl].duration;
                         countDown.textContent = Utils.secondsToHHMMSS(newDuration);
                     } else {
                         clearInterval(timer);

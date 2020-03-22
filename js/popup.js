@@ -6,32 +6,32 @@ const setUpPopup = () => {
     const changeOptions = document.querySelector('.manageOptions');
     let currTab;
     let baseUrl;
-    let paused;
+    let pausedData;
 
     chrome.storage.local.get('paused', (data) => {
-        paused = data.paused;
+        pausedData = data.paused;
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             currTab = tabs[0];
             if (currTab) { 
                 baseUrl = Utils.extractBaseUrl(currTab.url);
-                actionIcon.setAttribute('src', paused[baseUrl] ? 'images/unpause.png' : 'images/pause.png');
+                actionIcon.setAttribute('src', pausedData[baseUrl] ? 'images/unpause.png' : 'images/pause.png');
             }
         });
     });
 
     actionIcon.onclick = (el) => {
         const duration = document.querySelector('#duration').value || 30;
-        if (paused) {        
-            if (paused[baseUrl]) {
-                delete paused[baseUrl];
+        if (pausedData) {        
+            if (pausedData[baseUrl]) {
+                delete pausedData[baseUrl];
             } else {
-                paused[baseUrl] = { duration: duration * 60 };
+                pausedData[baseUrl] = { duration: duration * 60 };
             }
-
+              
             chrome.tabs.update(currTab.id, {url: currTab.url});
 
-            chrome.storage.local.set({ paused: paused }, ()  => {
-                actionIcon.setAttribute('src', paused[baseUrl] ? 'images/unpause.png' : 'images/pause.png')
+            chrome.storage.local.set({ paused: pausedData }, ()  => {
+                actionIcon.setAttribute('src', pausedData[baseUrl] ? 'images/unpause.png' : 'images/pause.png')
             });
         }
     };
