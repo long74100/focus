@@ -11,7 +11,10 @@ const Utils = (() => {
         return protocol + '//' + host;
     }
 
+    const secondsToHHMMSS = (seconds) => new Date(1000 * seconds).toISOString().substr(11, 8);
+
     return {
-        extractBaseUrl
+        extractBaseUrl,
+        secondsToHHMMSS
     }
 })();

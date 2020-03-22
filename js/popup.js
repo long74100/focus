@@ -4,13 +4,14 @@
 const setUpPopup = () => {
     const actionIcon = document.querySelector('.action-icon');
     const changeOptions = document.querySelector('.manageOptions');
+    let currTab;
     let baseUrl;
     let paused;
 
     chrome.storage.sync.get('paused', (data) => {
         paused = data.paused;
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            const currTab = tabs[0];
+            currTab = tabs[0];
             if (currTab) { 
                 baseUrl = Utils.extractBaseUrl(currTab.url);
                 actionIcon.setAttribute('src', paused[baseUrl] ? 'images/unpause.png' : 'images/pause.png');
@@ -25,6 +26,8 @@ const setUpPopup = () => {
             } else {
                 paused[baseUrl] = { duration: 30 };
             }
+
+            chrome.tabs.update(currTab.id, {url: currTab.url});
 
             chrome.storage.sync.set({'paused': paused}, ()  => {
                 actionIcon.setAttribute('src', paused[baseUrl] ? 'images/unpause.png' : 'images/pause.png')
