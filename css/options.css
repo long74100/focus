@@ -1,0 +1,45 @@
+.options {
+    margin: 0;
+    padding: 2.5em 10em;
+    height: 100vh;
+}
+
+ul {
+    padding: 1em;
+}
+
+li {
+    list-style: none;
+    margin-bottom: 1em;
+    display: flex;
+    border-bottom: 1px dotted;
+}
+
+h1 {
+    text-align: center;
+}
+
+span {
+    margin-right: 1em;
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 4;
+}
+
+.unpause-btn {
+    border: 2px solid #4CAF50;
+    padding: 0.5em;
+    margin-bottom: 0.25em;
+    text-align: center;
+    font-size: 1.25em;
+    border-radius: 5px;
+    flex: 1;
+    transition-duration: 0.4s;
+}
+
+.unpause-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}

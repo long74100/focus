@@ -19,7 +19,7 @@ const setUpPopup = () => {
         });
     });
 
-    actionIcon.onclick = (element) => {
+    actionIcon.onclick = (el) => {
         if (paused) {        
             if (paused[baseUrl]) {
                 delete paused[baseUrl];
@@ -35,7 +35,7 @@ const setUpPopup = () => {
         }
     };
 
-    changeOptions.onclick = (element) => {
+    changeOptions.onclick = (el) => {
         chrome.runtime.openOptionsPage();
     }
 }
