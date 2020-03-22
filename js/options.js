@@ -1,5 +1,5 @@
 const setUpOptions = () => {
-    chrome.storage.sync.get('paused', (data) => {
+    chrome.storage.local.get('paused', (data) => {
         const page = document.querySelector('.paused-sites');
         const list = document.createElement('ul');
         for (const key in data.paused) {

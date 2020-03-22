@@ -8,7 +8,7 @@ const setUpPopup = () => {
     let baseUrl;
     let paused;
 
-    chrome.storage.sync.get('paused', (data) => {
+    chrome.storage.local.get('paused', (data) => {
         paused = data.paused;
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             currTab = tabs[0];
@@ -29,7 +29,7 @@ const setUpPopup = () => {
 
             chrome.tabs.update(currTab.id, {url: currTab.url});
 
-            chrome.storage.sync.set({'paused': paused}, ()  => {
+            chrome.storage.local.set({'paused': paused}, ()  => {
                 actionIcon.setAttribute('src', paused[baseUrl] ? 'images/unpause.png' : 'images/pause.png')
             });
         }

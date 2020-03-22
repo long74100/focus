@@ -1,6 +1,6 @@
 
 const hidePage = () => {
-    chrome.storage.sync.get('paused', (data) => {
+    chrome.storage.local.get('paused', (data) => {
         const paused = data.paused;
         const baseUrl = Utils.extractBaseUrl(location.href);
         
@@ -19,7 +19,7 @@ const hidePage = () => {
             body.appendChild(overlay);
 
             const timer = setInterval(() => { 
-                chrome.storage.sync.get('paused', (data) => {
+                chrome.storage.local.get('paused', (data) => {
                     const newPaused = data.paused;
                     
                     if (newPaused[baseUrl]) {
